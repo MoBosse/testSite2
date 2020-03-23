@@ -881,7 +881,6 @@ var indicatorModel = function (options) {
   
   // use custom colors
   var colors = opensdg.chartColors(this.indicatorId);
-  console.log("Test indMod colors");
   
   // allow headline + (2 x others)
   var maxDatasetCount = 2 * colors.length;
@@ -1056,14 +1055,14 @@ var indicatorModel = function (options) {
           return translations.t(combination[key]);
         }).join(', ');
       },
+      
+      
       getColor = function(datasetIndex) {
-        console.log("Test indMod getColor");
-
         // offset if there is no headline data:
         if(!that.hasHeadline) {
           datasetIndex += 1;
         }
-
+        
         if(datasetIndex === 0) {
           return headlineColor;
         } else {
@@ -1385,27 +1384,37 @@ var mapView = function () {
     });
   };
 };
-opensdg.fixColors = function(data) {
-  //var sets = []
-  //for (var x=0; x<data.datasets.length; x++){
-    
+opensdg.fixColors = function(data, fixColObj, colorList) {
   
+  var nameList = [];
+  for (var n=0; n<data.datasets.length; n++){
+    nameList.push(data.datasets[n].label);
+  }
+  
+  //Alles was in fixColObj drin ist und nicht im data.datasets (also, die entfernte Datenreihe) wird aus fixColObj gelöscht.
+  //Die Farbe wird zunächst der colorList wieder zugefügt
+  for (var f=0; f<fixColObj.name.length; f++){
+    if (nameList.indexOf(fixColObj.name[f])==-1){
+      delete fixColObj.name[f];
+      colorList.push(fixColOj.color[f]);
+      delete fixColObj.color[f];
+      
+    }
+  }
+  
+  //Alles was in data.datasets ist und nicht in fixColObj (also, die neu dazu gekommene Datenreihe) wird in fixColObj geschrieben.
+  //Die Farbe wird aus der colorList genommen
+  for (var d=0; d<nameList.length; d++){
+    if (fixColObj.name.indexOf(nameList[d])==-1){
+      fixColObj.name.push(nameList[d]);
+      fixColObj.color.push(colorList[0]);
+      delete colorList[0];
+    }
+  }
   
   var colors = opensdg.chartColors(data.indicatorId);
-  //var obj = {dataset:[],color:[]};
-  //for (var o=0, o<obj.length; o++){
-    //if obj.dataset[o]
-  //}
-  
-  //for (var d=0; d<data.datasets.length; d++){
-    //if (obj.dataset.indexOf(data.datasets[d].label) == -1){
-      //obj.dataset.push(data.dataset[d].label);
-      //obj.color.push(colors[0]);
-      //colors.shift();
-    //}
-  //}
    
-  return colors
+  return fixColObj;
 };
 var indicatorView = function (model, options) {
 
