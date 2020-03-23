@@ -1067,14 +1067,20 @@ var indicatorModel = function (options) {
         
         
       
-      getColor2 = function(datasetIndex, data){
+      getColor2 = function(label){
         
-        if (datasetIndex == 0){
-          //var oldLabels = this.labels;
-          //var oldCols = this.useCol;
+        if (labels.indexOf(label) == -1){
+          labels.push(label);
+          useCol.push(remCol[0]);
+          delete remCol[0];
+          return useCol[-1]
         }
+        else{
+          return useCol[labels.indexOf(label)]
+        }
+        
         console.log(labels);
-        return getColor(datasetIndex);
+        
       },
         
         
@@ -1137,7 +1143,7 @@ var indicatorModel = function (options) {
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
-            borderColor: '#' + getColor2(datasetIndex, data),
+            borderColor: '#' + getColor2(combinationDescription),
             backgroundColor: getBackground(datasetIndex),
             pointBorderColor: '#' + getColor(datasetIndex),
             borderDash: getBorderDash(datasetIndex),
