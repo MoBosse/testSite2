@@ -1062,12 +1062,25 @@ var indicatorModel = function (options) {
           return translations.t(combination[key]);
         }).join(', ');
       },
+        
+        
+        
+        
       
       getColor2 = function(datasetIndex, data){
-        this.labels.push(datasetIndex);
-        console.log(this.labels);
+        
+        if (datasetIndex == 0){
+          //var oldLabels = this.labels;
+          //var oldCols = this.useCol;
+        }
+        console.log(labels);
         return getColor(datasetIndex);
       },
+        
+        
+        
+        
+        
       getColor = function(datasetIndex) {
         
         // offset if there is no headline data:
