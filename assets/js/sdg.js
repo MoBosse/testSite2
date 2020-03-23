@@ -1383,6 +1383,12 @@ var mapView = function () {
     });
   };
 };
+opensdg.fixColors = function(data) {
+
+  var returnList = "Test"
+  
+  return returnList
+};
 var indicatorView = function (model, options) {
 
   "use strict";
@@ -1767,6 +1773,8 @@ var indicatorView = function (model, options) {
           }]
         },
         legendCallback: function(chart) {
+            var test = opensdg.fixColors(chart.data);
+            console.log("Test", test);
             var text = ['<ul id="legend" style="text-align: left;">'];
 
             _.each(chart.data.datasets, function(dataset, datasetIndex) {
