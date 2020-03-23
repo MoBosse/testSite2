@@ -1122,7 +1122,7 @@ var indicatorModel = function (options) {
         return color;
       },
       getBackgroundColor = function(datasetIndex) {
-        return '#' + getColor(datasetIndex,label);
+        return '#' + getColor(datasetIndex);
       },
       getBackgroundPattern = function(color) {
         if (window.pattern && typeof window.pattern.draw === 'function') {
