@@ -1068,7 +1068,7 @@ var indicatorModel = function (options) {
         
       
       getColor2 = function(label){
-        
+        console.log(labels);
         if (labels.indexOf(label) == -1){
           labels.push(label);
           useCol.push(remCol[0]);
@@ -1079,7 +1079,7 @@ var indicatorModel = function (options) {
           return useCol[labels.indexOf(label)]
         }
         
-        console.log(labels);
+        
         
       },
         
@@ -1119,8 +1119,8 @@ var indicatorModel = function (options) {
 
         return color;
       },
-      getBackgroundColor = function(datasetIndex) {
-        return '#' + getColor(datasetIndex);
+      getBackgroundColor = function(datasetIndex,label) {
+        return '#' + getColor2(datasetIndex,label);
       },
       getBackgroundPattern = function(color) {
         if (window.pattern && typeof window.pattern.draw === 'function') {
@@ -1144,8 +1144,8 @@ var indicatorModel = function (options) {
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
             borderColor: '#' + getColor2(combinationDescription),
-            backgroundColor: getBackground(datasetIndex),
-            pointBorderColor: '#' + getColor(datasetIndex),
+            backgroundColor: getBackground(datasetIndex,combinationDescription),
+            pointBorderColor: '#' + getColor2(combinationDescription),
             borderDash: getBorderDash(datasetIndex),
             data: _.map(that.years, function (year) {
               var found = _.findWhere(data, {
