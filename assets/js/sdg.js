@@ -881,6 +881,7 @@ var indicatorModel = function (options) {
   
   // use custom colors
   var colors = opensdg.chartColors(this.indicatorId);
+  console.log("Test indMod colors");
   
   // allow headline + (2 x others)
   var maxDatasetCount = 2 * colors.length;
@@ -1056,6 +1057,7 @@ var indicatorModel = function (options) {
         }).join(', ');
       },
       getColor = function(datasetIndex) {
+        console.log("Test indMod getColor");
 
         // offset if there is no headline data:
         if(!that.hasHeadline) {
@@ -1384,9 +1386,25 @@ var mapView = function () {
   };
 };
 opensdg.fixColors = function(data) {
-  var colors = opensdg.chartColors(data.indicatorId);
-  var returnList = data.indicatorId;
+  //var sets = []
+  //for (var x=0; x<data.datasets.length; x++){
+    
   
+  
+  var colors = opensdg.chartColors(data.indicatorId);
+  //var obj = {dataset:[],color:[]};
+  //for (var o=0, o<obj.length; o++){
+    //if obj.dataset[o]
+  //}
+  
+  //for (var d=0; d<data.datasets.length; d++){
+    //if (obj.dataset.indexOf(data.datasets[d].label) == -1){
+      //obj.dataset.push(data.dataset[d].label);
+      //obj.color.push(colors[0]);
+      //colors.shift();
+    //}
+  //}
+   
   return colors
 };
 var indicatorView = function (model, options) {
