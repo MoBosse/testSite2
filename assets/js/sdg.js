@@ -1073,10 +1073,12 @@ var indicatorModel = function (options) {
           labels.push(label);
           useCol.push(remCol[0]);
           delete remCol[0];
-          return useCol[-1]
+          return useCol[-1];
+          console.log("case1", label);
         }
         else{
-          return useCol[labels.indexOf(label)]
+          return useCol[labels.indexOf(label)];
+          console.log("case2", label);
         }
         
         
