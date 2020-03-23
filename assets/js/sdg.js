@@ -1121,8 +1121,8 @@ var indicatorModel = function (options) {
 
         return color;
       },
-      getBackgroundColor = function(datasetIndex,label) {
-        return '#' + getColor2(datasetIndex,label);
+      getBackgroundColor = function(datasetIndex) {
+        return '#' + getColor(datasetIndex,label);
       },
       getBackgroundPattern = function(color) {
         if (window.pattern && typeof window.pattern.draw === 'function') {
@@ -1145,9 +1145,9 @@ var indicatorModel = function (options) {
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
-            borderColor: '#' + getColor2(combinationDescription),
-            backgroundColor: getBackground(datasetIndex,combinationDescription),
-            pointBorderColor: '#' + getColor2(combinationDescription),
+            borderColor: '#' + getColor(datasetIndex),
+            backgroundColor: getBackground(datasetIndex),
+            pointBorderColor: '#' + getColor(datasetIndex),
             borderDash: getBorderDash(datasetIndex),
             data: _.map(that.years, function (year) {
               var found = _.findWhere(data, {
