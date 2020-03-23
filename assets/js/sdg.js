@@ -1383,11 +1383,11 @@ var mapView = function () {
     });
   };
 };
-opensdg.fixColors = function(indicatorId) {
-  var colors = opensdg.chartColors(indicatorId);
-  var returnList = "Test"
+opensdg.fixColors = function(data) {
+  //var colors = opensdg.chartColors(data.indicatorId);
+  var returnList = data.indicatorId;
   
-  return colors
+  return returnList
 };
 var indicatorView = function (model, options) {
 
