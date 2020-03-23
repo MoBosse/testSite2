@@ -1384,10 +1384,10 @@ var mapView = function () {
   };
 };
 opensdg.fixColors = function(data) {
-  //var colors = opensdg.chartColors(data.indicatorId);
+  var colors = opensdg.chartColors(data.indicatorId);
   var returnList = data.indicatorId;
   
-  return returnList
+  return colors
 };
 var indicatorView = function (model, options) {
 
