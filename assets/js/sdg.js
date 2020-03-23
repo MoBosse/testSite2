@@ -1064,8 +1064,9 @@ var indicatorModel = function (options) {
       },
       
       getColor2 = function(datasetIndex, data){
-        console.log(data);
-        return getColor(datasetIndex)
+        this.labels.push(datasetIndex);
+        console.log(this.labels);
+        return getColor(datasetIndex);
       },
       getColor = function(datasetIndex) {
         
