@@ -1276,6 +1276,7 @@ footer {
   margin-bottom: 10px;
   clear: left; }
 #main-content #legend {
+  display: block;
   padding-left: 0;
   text-align: center;
   margin-top: -32px; }
