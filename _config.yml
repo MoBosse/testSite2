@@ -20,7 +20,7 @@ remote_data_prefix: "https://MoBosse.github.io/testData2"
 # URL for the "Edit Data" button on indicators.
 data_edit_url: http://prose.io/#MoBosse/testData2/edit/develop/data/indicator_[id].csv
 # URL for the "Edit Metadata" button on indicators.
-metadata_edit_url: http://prose.io/#MoBosse/otestData2/edit/develop/meta/[id].md
+metadata_edit_url: http://prose.io/#MoBosse/testData2/edit/develop/meta/[id].md
 
 # Automatically create indicator pages, goal pages,
 # and some other required pages.
