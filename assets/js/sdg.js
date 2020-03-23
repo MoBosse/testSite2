@@ -882,6 +882,13 @@ var indicatorModel = function (options) {
   // use custom colors
   var colors = opensdg.chartColors(this.indicatorId);
   
+  //#XX---start---
+  var remCol = colors;
+  var labels = [];
+  var useCol = [];
+  
+  //#XX---stop---
+  
   // allow headline + (2 x others)
   var maxDatasetCount = 2 * colors.length;
 
@@ -1056,8 +1063,12 @@ var indicatorModel = function (options) {
         }).join(', ');
       },
       
-      
+      getColor2 = function(datasetIndex, data){
+        console.log(data);
+        return getColor(datasetIndex)
+      },
       getColor = function(datasetIndex) {
+        
         // offset if there is no headline data:
         if(!that.hasHeadline) {
           datasetIndex += 1;
@@ -1112,7 +1123,7 @@ var indicatorModel = function (options) {
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
-            borderColor: '#' + getColor(datasetIndex),
+            borderColor: '#' + getColor2(datasetIndex, data),
             backgroundColor: getBackground(datasetIndex),
             pointBorderColor: '#' + getColor(datasetIndex),
             borderDash: getBorderDash(datasetIndex),
@@ -1383,38 +1394,6 @@ var mapView = function () {
       mapLayers: null,
     });
   };
-};
-opensdg.fixColors = function(data, fixColObj, colorList) {
-  
-  var nameList = [];
-  for (var n=0; n<data.datasets.length; n++){
-    nameList.push(data.datasets[n].label);
-  }
-  
-  //Alles was in fixColObj drin ist und nicht im data.datasets (also, die entfernte Datenreihe) wird aus fixColObj gelöscht.
-  //Die Farbe wird zunächst der colorList wieder zugefügt
-  for (var f=0; f<fixColObj.name.length; f++){
-    if (nameList.indexOf(fixColObj.name[f])==-1){
-      delete fixColObj.name[f];
-      colorList.push(fixColOj.color[f]);
-      delete fixColObj.color[f];
-      
-    }
-  }
-  
-  //Alles was in data.datasets ist und nicht in fixColObj (also, die neu dazu gekommene Datenreihe) wird in fixColObj geschrieben.
-  //Die Farbe wird aus der colorList genommen
-  for (var d=0; d<nameList.length; d++){
-    if (fixColObj.name.indexOf(nameList[d])==-1){
-      fixColObj.name.push(nameList[d]);
-      fixColObj.color.push(colorList[0]);
-      delete colorList[0];
-    }
-  }
-  
-  var colors = opensdg.chartColors(data.indicatorId);
-   
-  return fixColObj;
 };
 var indicatorView = function (model, options) {
 
@@ -1800,8 +1779,7 @@ var indicatorView = function (model, options) {
           }]
         },
         legendCallback: function(chart) {
-            var test = opensdg.fixColors(chart.data);
-            console.log("Test", test);
+            
             var text = ['<ul id="legend" style="text-align: left;">'];
 
             _.each(chart.data.datasets, function(dataset, datasetIndex) {
