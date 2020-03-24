@@ -1157,12 +1157,12 @@ var indicatorModel = function (options) {
       },
        
       updateDic = function(label, index){
-        console.log("the dics are getting updated","old",oldDic,"new",newDic);
+        
         if (label==undefined){
           label = 'x'
         }
         if (index==0){
-          console.log("the datasetIndex is 0","old",oldDic,"new",newDic);
+          
           const oldDic = JSON.parse(JSON.stringify(newDic));
           console.log("the oldDic is overwritten","old",oldDic,"new",newDic);
           for (var i=0;i<oldDic.labels.length; i++){
