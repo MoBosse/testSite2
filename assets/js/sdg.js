@@ -883,7 +883,7 @@ var indicatorModel = function (options) {
   var colors = opensdg.chartColors(this.indicatorId);
   
   //#XX---start---
-  var remCol = colors;
+  var remCol = Array.prototype.push.apply(colors, colors);
   var labels = [];
   var useCol = [];
   
