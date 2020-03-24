@@ -1168,7 +1168,7 @@ var indicatorModel = function (options) {
           this.oldDic = oldDic;
         }
         if (this.oldDic.labels.indexOf(label)==-1){
-          console.log("the dataset ",label," is new start","old",oldDic,"new",newDic,'this",this.oldDic);
+          console.log("the dataset ",label," is new start","old",oldDic,"new",newDic,'this',this.oldDic);
           var position = oldDic.labels.indexOf('empty');
           newDic.labels[position] = label;
           console.log("the dataset ",label," is new stop","old",oldDic,"new",newDic);
