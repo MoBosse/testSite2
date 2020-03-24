@@ -883,7 +883,7 @@ var indicatorModel = function (options) {
   var colors = opensdg.chartColors(this.indicatorId);
   
   //#XX---start---
-  var remCol = Array.prototype.push.apply(colors, colors);
+  var remCol = colors;
   var labels = [];
   var useCol = [];
   
@@ -1073,11 +1073,20 @@ var indicatorModel = function (options) {
           label = 'x'}
         //if series was not displayed before
         if (labels.indexOf(label) == -1){
-          labels.push(label);
-          useCol.push(remCol[0]);
-          remCol.shift();
-          console.log("A", labels, useCol, remCol);
-          return useCol[useCol.length -1];
+          //no need for dashed lines
+          if (remCol.length>0){
+            
+            labels.push(label);
+            useCol.push(remCol[0]);
+            remCol.shift();
+            console.log("A", labels, useCol, remCol);
+            return useCol[useCol.length -1];
+          }
+          //need for dashed lines
+          else if(useCol.length<=colors.length*2){
+            labels.push(label);
+            useCol.push(useCol[0]);
+          }
           
         }
         //if series was displayed before
