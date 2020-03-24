@@ -887,6 +887,20 @@ var indicatorModel = function (options) {
   var labels = [];
   var useCol = [];
   
+  var newDic = {labels:[],colors:[],dashed:[]};
+  for (var i=0; i<colors.length*2; i++){
+    if (i <= colors.length){
+      oldDic.dashed.push('empty');
+      oldDic.colors.push(colors[i]);
+      oldDic.dashed.push(false);
+    }
+    else{
+      oldDic.dashed.push('empty');
+      oldDic.colors.push(colors[i - colors.length]);
+      oldDic.dashed.push(true);
+    }
+      
+    
   //#XX---stop---
   
   // allow headline + (2 x others)
@@ -1067,34 +1081,21 @@ var indicatorModel = function (options) {
         
         
       
-      getColor2 = function(label){
+      getColor2 = function(label, index){
         //set label for headline data
         if (label == undefined){
           label = 'x'}
-        //if series was not displayed before
-        if (labels.indexOf(label) == -1){
-          //no need for dashed lines
-          if (remCol.length>0){
-            
-            labels.push(label);
-            useCol.push(remCol[0]);
-            remCol.shift();
-            console.log("A", labels, useCol, remCol);
-            return useCol[useCol.length -1];
-          }
-          //need for dashed lines
-          else if(useCol.length<=colors.length*2){
-            labels.push(label);
-            useCol.push(useCol[0]);
-          }
-          
-        }
-        //if series was displayed before
-        else{
-          console.log("B", labels, useCol, remCol);
-          return useCol[labels.indexOf(label)];
-        } 
+        return newDic.colors[newDic.labels.indexOf(label)];
+      },
         
+      getBorderDash2 = function(label, index){
+        //set label for headline data
+        if (label == undefined){
+          label = 'x'}
+        if (newDic.dashed[newDic.labels.indexOf(label)]){
+          
+        
+        return newDic.dashed[newDic.labels.indexOf(label)] ? [5, 5] : undefined;
       },
         
         
@@ -1153,14 +1154,35 @@ var indicatorModel = function (options) {
         // the first dataset is the headline:
         return datasetIndex > colors.length ? [5, 5] : undefined;
       },
+       
+      updateDic = function(label, index){
+        if (label==undefined){
+          label = 'x'
+        }
+        if (index==0){
+          var oldDic = newDic;
+          for (var i=0;i<oldDic.labels.length; i++){
+            newDic.label[i]='empty';
+          }
+        }
+        if (oldDic.labels.indexOf(label)==-1){
+          var position = oldDic.labels.indexOf('empty');
+          newDic.labels[position] = label;
+        }
+      },
+        
+          
+        
       convertToDataset = function (data, combinationDescription, combination) {
+        updateDic(combinationDescription, data.datasetIndex),
+        
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
-            borderColor: '#' + getColor2(combinationDescription),//(datasetIndex),
+            borderColor: '#' + getColor2(combinationDescription, datasetIndex),//(datasetIndex),
             backgroundColor: getBackground(datasetIndex),
             pointBorderColor: '#' + getColor(datasetIndex),
-            borderDash: getBorderDash(datasetIndex),
+            borderDash: getBorderDash2(combinationDescription, datasetIndex),//getBorderDash(datasetIndex),
             data: _.map(that.years, function (year) {
               var found = _.findWhere(data, {
                 Year: year
