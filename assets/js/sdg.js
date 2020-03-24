@@ -1077,7 +1077,7 @@ var indicatorModel = function (options) {
           console.log("case1", label);
         }
         else{
-          return '00ff00'//useCol[labels.indexOf(label)];
+          return 'ff34b3'//useCol[labels.indexOf(label)];
           console.log("case2", label);
         }
         
