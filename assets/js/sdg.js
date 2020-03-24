@@ -1159,7 +1159,7 @@ var indicatorModel = function (options) {
         }
         if (index==0){
           
-          const this.oldDic = JSON.parse(JSON.stringify(this.newDic));
+          const oldDic = JSON.parse(JSON.stringify(this.newDic));
           console.log("the oldDic is overwritten","old",this.oldDic,"new",this.newDic);
           for (var i=0;i<oldDic.labels.length; i++){
             this.newDic.labels[i]='empty';
