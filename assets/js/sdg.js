@@ -1075,7 +1075,7 @@ var indicatorModel = function (options) {
         if (labels.indexOf(label) == -1){
           labels.push(label);
           useCol.push(remCol[0]);
-          delete remCol[0];
+          remCol.shift();
           console.log("A", labels, useCol, remCol);
           return '00ff00'//useCol[-1];
           
