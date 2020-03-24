@@ -1077,13 +1077,13 @@ var indicatorModel = function (options) {
           useCol.push(remCol[0]);
           remCol.shift();
           console.log("A", labels, useCol, remCol);
-          return '00ff00'//useCol[-1];
+          return useCol[-1];
           
         }
         //if series was displayed before
         else{
           console.log("B", labels, useCol, remCol);
-          return '34b312'//useCol[labels.indexOf(label)];
+          return useCol[labels.indexOf(label)];
         } 
         
       },
