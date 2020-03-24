@@ -1077,13 +1077,13 @@ var indicatorModel = function (options) {
           useCol.push(remCol[0]);
           delete remCol[0];
           return useCol[-1];
-          console.log("case1", label);
+          
         }
         //if series was displayed before
         else{
           return useCol[labels.indexOf(label)];
-          console.log("case2", label);
         } 
+        console.log(labels, useCol, remCol);
       },
         
         
