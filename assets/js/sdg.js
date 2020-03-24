@@ -883,23 +883,23 @@ var indicatorModel = function (options) {
   var colors = opensdg.chartColors(this.indicatorId);
   
   //#XX---start---  
-  var newDic = {labels:[],colors:[],dashed:[]};
-  var oldDic = {labels:[],colors:[],dashed:[]};
-  console.log("befor for:", oldDic, newDic);
+  this.newDic = {labels:[],colors:[],dashed:[]};
+  this.oldDic = {labels:[],colors:[],dashed:[]};
+  console.log("befor for:", this.oldDic, this.newDic);
   for (var i=0; i<colors.length*2; i++){
     if (i < colors.length){
-      newDic.labels.push('empty');
-      newDic.colors.push(colors[i]);
-      newDic.dashed.push(false);
+      this.newDic.labels.push('empty');
+      this.newDic.colors.push(colors[i]);
+      this.newDic.dashed.push(false);
     }
     else{
-      newDic.labels.push('empty');
-      newDic.colors.push(colors[i - colors.length]);
-      newDic.dashed.push(true);
+      this.newDic.labels.push('empty');
+      this.newDic.colors.push(colors[i - colors.length]);
+      this.newDic.dashed.push(true);
     }
   }
       
-  console.log("after for:", oldDic, newDic); 
+  console.log("after for:", this.oldDic, this.newDic); 
   //#XX---stop---
   
   // allow headline + (2 x others)
@@ -1084,7 +1084,7 @@ var indicatorModel = function (options) {
         //set label for headline data
         if (label == undefined){
           label = 'x'}
-        return newDic.colors[newDic.labels.indexOf(label)];
+        return this.newDic.colors[this.newDic.labels.indexOf(label)];
       },
         
       getBorderDash2 = function(label, index){
@@ -1092,7 +1092,7 @@ var indicatorModel = function (options) {
         if (label == undefined){
           label = 'x'}     
         
-        return newDic.dashed[newDic.labels.indexOf(label)] ? [5, 5] : undefined;
+        return this.newDic.dashed[this.newDic.labels.indexOf(label)] ? [5, 5] : undefined;
       },
         
         
@@ -1159,19 +1159,19 @@ var indicatorModel = function (options) {
         }
         if (index==0){
           
-          const oldDic = JSON.parse(JSON.stringify(newDic));
-          console.log("the oldDic is overwritten","old",oldDic,"new",newDic);
+          const this.oldDic = JSON.parse(JSON.stringify(this.newDic));
+          console.log("the oldDic is overwritten","old",this.oldDic,"new",this.newDic);
           for (var i=0;i<oldDic.labels.length; i++){
-            newDic.labels[i]='empty';
+            this.newDic.labels[i]='empty';
           }
-          console.log("the newDic is overwritten","old",oldDic,"new",newDic);
-          this.oldDic = oldDic;
+          console.log("the newDic is overwritten","old",this.oldDic,"new",this.newDic);
+          this.oldDic = this.oldDic;
         }
         if (this.oldDic.labels.indexOf(label)==-1){
-          console.log("the dataset ",label," is new start","old",oldDic,"new",newDic,'this',this.oldDic);
+          console.log("the dataset ",label," is new start","old",this.oldDic,"new",this.newDic);
           var position = this.oldDic.labels.indexOf('empty');
-          newDic.labels[position] = label;
-          console.log("the dataset ",label," is new stop","old",oldDic,"new",newDic,'this',this.oldDic);
+          this.newDic.labels[position] = label;
+          console.log("the dataset ",label," is new stop","old",this.oldDic,"new",this.newDic);
         }
       },
         
