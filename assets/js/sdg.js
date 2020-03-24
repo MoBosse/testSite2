@@ -890,14 +890,14 @@ var indicatorModel = function (options) {
   var newDic = {labels:[],colors:[],dashed:[]};
   for (var i=0; i<colors.length*2; i++){
     if (i <= colors.length){
-      oldDic.dashed.push('empty');
-      oldDic.colors.push(colors[i]);
-      oldDic.dashed.push(false);
+      newDic.labels.push('empty');
+      newDic.colors.push(colors[i]);
+      newDic.dashed.push(false);
     }
     else{
-      oldDic.dashed.push('empty');
-      oldDic.colors.push(colors[i - colors.length]);
-      oldDic.dashed.push(true);
+      newDic.labels.push('empty');
+      newDic.colors.push(colors[i - colors.length]);
+      newDic.dashed.push(true);
     }
       
     
@@ -1172,7 +1172,7 @@ var indicatorModel = function (options) {
           
         
       convertToDataset = function (data, combinationDescription, combination) {
-        updateDic(combinationDescription, data.datasetIndex),
+        updateDic(combinationDescription, datasetIndex);
         
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
