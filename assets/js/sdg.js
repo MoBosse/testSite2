@@ -1165,10 +1165,10 @@ var indicatorModel = function (options) {
             newDic.labels[i]='empty';
           }
           console.log("the newDic is overwritten","old",oldDic,"new",newDic);
-          var oldDic = oldDic;
+          this.oldDic = oldDic;
         }
-        if (oldDic.labels.indexOf(label)==-1){
-          console.log("the dataset ",label," is new start","old",oldDic,"new",newDic);
+        if (this.oldDic.labels.indexOf(label)==-1){
+          console.log("the dataset ",label," is new start","old",oldDic,"new",newDic,'this",this.oldDic);
           var position = oldDic.labels.indexOf('empty');
           newDic.labels[position] = label;
           console.log("the dataset ",label," is new stop","old",oldDic,"new",newDic);
