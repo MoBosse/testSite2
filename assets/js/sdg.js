@@ -1070,7 +1070,7 @@ var indicatorModel = function (options) {
       getColor2 = function(label){
         //set label for headline data
         if (label == undefined){
-          label = 'undefined'}
+          label = 'x'}
         //if series was not displayed before
         if (labels.indexOf(label) == -1){
           labels.push(label);
@@ -1082,7 +1082,7 @@ var indicatorModel = function (options) {
         }
         //if series was displayed before
         else{
-          console.log("B", labels, useCol, remCol);
+          console.log("B", labels, labels.indexOf(label), useCol, remCol);
           return useCol[labels.indexOf(label)];
         } 
         
