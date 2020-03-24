@@ -903,7 +903,7 @@ var indicatorModel = function (options) {
     }
   }
       
-  console.log("befor for", oldDic, newDic); 
+  console.log("after for", oldDic, newDic); 
   //#XX---stop---
   
   // allow headline + (2 x others)
@@ -1163,7 +1163,7 @@ var indicatorModel = function (options) {
         }
         if (index==0){
           console.log("the datasetIndex is 0","old",oldDic,"new",newDic);
-          oldDic = newDic;
+          const oldDic = JSON.parse(JSON.stringify(newDic));
           console.log("the oldDic is overwritten","old",oldDic,"new",newDic);
           for (var i=0;i<oldDic.labels.length; i++){
             newDic.labels[i]='empty';
