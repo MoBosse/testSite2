@@ -1169,9 +1169,9 @@ var indicatorModel = function (options) {
         }
         if (this.oldDic.labels.indexOf(label)==-1){
           console.log("the dataset ",label," is new start","old",oldDic,"new",newDic,'this',this.oldDic);
-          var position = oldDic.labels.indexOf('empty');
+          var position = this.oldDic.labels.indexOf('empty');
           newDic.labels[position] = label;
-          console.log("the dataset ",label," is new stop","old",oldDic,"new",newDic);
+          console.log("the dataset ",label," is new stop","old",oldDic,"new",newDic,'this',this.oldDic);
         }
       },
         
