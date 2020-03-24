@@ -1068,21 +1068,22 @@ var indicatorModel = function (options) {
         
       
       getColor2 = function(label){
-        console.log(labels);
+        //set label for headline data
+        if (label == undefined){
+          label = 'undefined'}
+        //if series was not displayed before
         if (labels.indexOf(label) == -1){
           labels.push(label);
           useCol.push(remCol[0]);
           delete remCol[0];
-          return '00ff00'//useCol[-1];
+          return useCol[-1];
           console.log("case1", label);
         }
+        //if series was displayed before
         else{
-          return 'ff34b3'//useCol[labels.indexOf(label)];
+          return useCol[labels.indexOf(label)];
           console.log("case2", label);
-        }
-        
-        
-        
+        } 
       },
         
         
