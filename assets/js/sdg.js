@@ -882,14 +882,10 @@ var indicatorModel = function (options) {
   // use custom colors
   var colors = opensdg.chartColors(this.indicatorId);
   
-  //#XX---start---
-  var remCol = colors;
-  var labels = [];
-  var useCol = [];
-  
+  //#XX---start---  
   var newDic = {labels:[],colors:[],dashed:[]};
   var oldDic = {labels:[],colors:[],dashed:[]};
-  console.log("befor for", oldDic, newDic);
+  console.log("befor for:", oldDic, newDic);
   for (var i=0; i<colors.length*2; i++){
     if (i < colors.length){
       newDic.labels.push('empty');
@@ -903,7 +899,7 @@ var indicatorModel = function (options) {
     }
   }
       
-  console.log("after for", oldDic, newDic); 
+  console.log("after for:", oldDic, newDic); 
   //#XX---stop---
   
   // allow headline + (2 x others)
@@ -1169,6 +1165,7 @@ var indicatorModel = function (options) {
             newDic.labels[i]='empty';
           }
           console.log("the newDic is overwritten","old",oldDic,"new",newDic);
+          var oldDic = oldDic;
         }
         if (oldDic.labels.indexOf(label)==-1){
           console.log("the dataset ",label," is new start","old",oldDic,"new",newDic);
