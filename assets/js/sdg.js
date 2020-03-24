@@ -889,6 +889,7 @@ var indicatorModel = function (options) {
   
   var newDic = {labels:[],colors:[],dashed:[]};
   var oldDic = {labels:[],colors:[],dashed:[]};
+  console.log("befor for", oldDic, newDic);
   for (var i=0; i<colors.length*2; i++){
     if (i < colors.length){
       newDic.labels.push('empty');
@@ -902,7 +903,7 @@ var indicatorModel = function (options) {
     }
   }
       
-  console.log("a", newDic); 
+  console.log("befor for", oldDic, newDic); 
   //#XX---stop---
   
   // allow headline + (2 x others)
@@ -1156,20 +1157,24 @@ var indicatorModel = function (options) {
       },
        
       updateDic = function(label, index){
+        console.log("the dics are getting updated","old",oldDic,"new",newDic);
         if (label==undefined){
           label = 'x'
         }
         if (index==0){
+          console.log("the datasetIndex is 0","old",oldDic,"new",newDic);
           oldDic = newDic;
+          console.log("the oldDic is overwritten","old",oldDic,"new",newDic);
           for (var i=0;i<oldDic.labels.length; i++){
             newDic.labels[i]='empty';
           }
-          console.log("b", oldDic, newDic);
+          console.log("the newDic is overwritten","old",oldDic,"new",newDic);
         }
         if (oldDic.labels.indexOf(label)==-1){
-          console.log("c",label);
+          console.log("the dataset ",label," is new start","old",oldDic,"new",newDic);
           var position = oldDic.labels.indexOf('empty');
           newDic.labels[position] = label;
+          console.log("the dataset ",label," is new stop","old",oldDic,"new",newDic);
         }
       },
         
