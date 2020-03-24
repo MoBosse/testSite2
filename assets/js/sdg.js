@@ -889,7 +889,7 @@ var indicatorModel = function (options) {
   
   var newDic = {labels:[],colors:[],dashed:[]};
   for (var i=0; i<colors.length*2; i++){
-    if (i <= colors.length){
+    if (i < colors.length){
       newDic.labels.push('empty');
       newDic.colors.push(colors[i]);
       newDic.dashed.push(false);
@@ -1161,7 +1161,7 @@ var indicatorModel = function (options) {
         if (index==0){
           var oldDic = newDic;
           for (var i=0;i<oldDic.labels.length; i++){
-            newDic.label[i]='empty';
+            newDic.labels[i]='empty';
           }
         }
         if (oldDic.labels.indexOf(label)==-1){
