@@ -888,6 +888,7 @@ var indicatorModel = function (options) {
   var useCol = [];
   
   var newDic = {labels:[],colors:[],dashed:[]};
+  var oldDic = newDic;
   for (var i=0; i<colors.length*2; i++){
     if (i < colors.length){
       newDic.labels.push('empty');
@@ -1163,6 +1164,7 @@ var indicatorModel = function (options) {
           for (var i=0;i<oldDic.labels.length; i++){
             newDic.labels[i]='empty';
           }
+          console.log("b", oldDic, newDic);
         }
         if (oldDic.labels.indexOf(label)==-1){
           var position = oldDic.labels.indexOf('empty');
