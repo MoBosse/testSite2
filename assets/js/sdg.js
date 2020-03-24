@@ -1076,12 +1076,12 @@ var indicatorModel = function (options) {
           labels.push(label);
           useCol.push(remCol[0]);
           delete remCol[0];
-          return useCol[-1];
+          return '00ff00'//useCol[-1];
           
         }
         //if series was displayed before
         else{
-          return useCol[labels.indexOf(label)];
+          return '34b312'//useCol[labels.indexOf(label)];
         } 
         console.log(labels, useCol, remCol);
       },
