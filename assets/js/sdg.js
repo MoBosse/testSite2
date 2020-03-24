@@ -1091,9 +1091,7 @@ var indicatorModel = function (options) {
       getBorderDash2 = function(label, index){
         //set label for headline data
         if (label == undefined){
-          label = 'x'}
-        if (newDic.dashed[newDic.labels.indexOf(label)]){
-          
+          label = 'x'}     
         
         return newDic.dashed[newDic.labels.indexOf(label)] ? [5, 5] : undefined;
       },
