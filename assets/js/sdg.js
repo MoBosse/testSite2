@@ -1073,11 +1073,11 @@ var indicatorModel = function (options) {
           labels.push(label);
           useCol.push(remCol[0]);
           delete remCol[0];
-          return useCol[-1];
+          return '00ff00'//useCol[-1];
           console.log("case1", label);
         }
         else{
-          return useCol[labels.indexOf(label)];
+          return '00ff00'//useCol[labels.indexOf(label)];
           console.log("case2", label);
         }
         
@@ -1145,7 +1145,7 @@ var indicatorModel = function (options) {
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
-            borderColor: '#' + getColor(datasetIndex),
+            borderColor: '#' + getColor2(combinationDescription),//(datasetIndex),
             backgroundColor: getBackground(datasetIndex),
             pointBorderColor: '#' + getColor(datasetIndex),
             borderDash: getBorderDash(datasetIndex),
