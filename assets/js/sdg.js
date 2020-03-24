@@ -899,8 +899,9 @@ var indicatorModel = function (options) {
       newDic.colors.push(colors[i - colors.length]);
       newDic.dashed.push(true);
     }
+  }
       
-    
+  console.log("a", newDic); 
   //#XX---stop---
   
   // allow headline + (2 x others)
