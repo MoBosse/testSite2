@@ -1160,7 +1160,7 @@ var indicatorModel = function (options) {
           label = 'x'
         }
         if (index==0){
-          var oldDic = newDic;
+          oldDic = newDic;
           for (var i=0;i<oldDic.labels.length; i++){
             newDic.labels[i]='empty';
           }
