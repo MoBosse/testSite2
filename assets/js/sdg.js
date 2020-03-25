@@ -888,13 +888,13 @@ var indicatorModel = function (options) {
   console.log("befor for:", this.oldDic, this.newDic);
   for (var i=0; i<colors.length*2; i++){
     if (i < colors.length){
-      this.newDic.labels.push('empty');
-      this.newDic.colors.push(colors[i]);
+      this.newDic.labels.push("empty");
+      this.newDic.colors.push(colors[i].replace("'",'"'));
       this.newDic.dashed.push(false);
     }
     else{
       this.newDic.labels.push('empty');
-      this.newDic.colors.push(colors[i - colors.length]);
+      this.newDic.colors.push(colors[i - colors.length].replace("'",'"'));
       this.newDic.dashed.push(true);
     }
   }
@@ -1162,14 +1162,14 @@ var indicatorModel = function (options) {
           const oldDic = JSON.parse(JSON.stringify(this.newDic));
           console.log("the oldDic is overwritten","old",this.oldDic,"new",this.newDic);
           for (var i=0;i<oldDic.labels.length; i++){
-            this.newDic.labels[i]='empty';
+            this.newDic.labels[i]="empty";
           }
           console.log("the newDic is overwritten","old",this.oldDic,"new",this.newDic);
           this.oldDic = this.oldDic;
         }
         if (this.oldDic.labels.indexOf(label)==-1){
           console.log("the dataset ",label," is new start","old",this.oldDic,"new",this.newDic);
-          var position = this.oldDic.labels.indexOf('empty');
+          var position = this.oldDic.labels.indexOf("empty");
           this.newDic.labels[position] = label;
           console.log("the dataset ",label," is new stop","old",this.oldDic,"new",this.newDic);
         }
