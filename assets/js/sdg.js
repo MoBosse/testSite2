@@ -883,9 +883,12 @@ var indicatorModel = function (options) {
   var colors = opensdg.chartColors(this.indicatorId);
   
   //#XX---start---  
-  this.newDic = {labels:[],colors:[],dashed:[]};
+  
   this.oldDic = {labels:[],colors:[],dashed:[]};
   console.log("befor for:", this.oldDic, this.newDic);
+  this.newDic = {labels:[],colors:[],dashed:[]};
+  
+  
   for (var i=0; i<colors.length*2; i++){
     if (i < colors.length){
       this.newDic.labels.push("empty");
@@ -893,7 +896,7 @@ var indicatorModel = function (options) {
       this.newDic.dashed.push(false);
     }
     else{
-      this.newDic.labels.push('empty');
+      this.newDic.labels.push("empty");
       this.newDic.colors.push(colors[i - colors.length].replace("'",'"'));
       this.newDic.dashed.push(true);
     }
