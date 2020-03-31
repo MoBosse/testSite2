@@ -1186,10 +1186,10 @@ var indicatorModel = function (options) {
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
-            borderColor: '#' + getColor2(combinationDescription, datasetIndex),//(datasetIndex),
+            borderColor: '#' + getColor(datasetIndex),
             backgroundColor: getBackground(datasetIndex),
             pointBorderColor: '#' + getColor(datasetIndex),
-            borderDash: getBorderDash2(combinationDescription, datasetIndex),//getBorderDash(datasetIndex),
+            borderDash: getBorderDash(datasetIndex),
             data: _.map(that.years, function (year) {
               var found = _.findWhere(data, {
                 Year: year
