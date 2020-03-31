@@ -815,6 +815,9 @@ body.long #accessibility-nav li.contrast {
     text-decoration: none;
     padding: 1px; }
 
+body.contrast-high .site-intro .description {
+  color: white; }
+
 #skiplink {
   position: absolute;
   top: 0;
@@ -853,7 +856,8 @@ header {
     .navbar ul.navbar-nav li a {
       padding: 2px;
       margin: 2px 15px;
-      color: #595959; }
+      color: #595959;
+      font-size: 16px; }
     .navbar ul.navbar-nav li.active a {
       border-bottom: 2px solid #333;
       background: transparent;
@@ -1282,7 +1286,7 @@ footer {
   #main-content #legend li {
     font-size: 13px;
     list-style-type: none;
-    display: block;
+    display: inline-block;
     color: #666;
     line-height: 18px;
     cursor: pointer;
@@ -1475,9 +1479,11 @@ body.contrast-high caption {
 body.contrast-high div#units {
   color: white; }
 body.contrast-high #legend li {
-  color: white !important; }
-  body.contrast-high #legend li:first-child .swatch {
-    background-color: white !important; }
+  color: white !important;
+  border: 1px solid transparent; }
+  body.contrast-high #legend li:hover {
+    background: transparent !important;
+    border: 1px solid white; }
 
 body.contrast-high .goal-indicators div span {
   border-color: white !important;
@@ -1522,10 +1528,10 @@ body.contrast-high .goal-indicators .indicator-cards span.status.notstarted {
   background: repeating-linear-gradient(135deg, #ccc, white 10px, #ccc 10px, white 20px); }
 
 .inprogress {
-  background-color: #767676; }
+  background-color: #757575; }
 
 .complete {
-  background-color: #000000; }
+  background-color: #2B2B2B; }
 
 #main-content .statuses strong {
   font-weight: normal; }
@@ -1621,21 +1627,28 @@ body.contrast-high .notapplicable {
 #jump-to-search a {
   cursor: pointer; }
 
+.layout-search h1 {
+  font-size: 24px; }
+
 #search-results {
   margin-top: 20px; }
   #search-results span.match {
     background-color: yellow; }
-  #search-results .search-result a {
-    text-decoration: none;
-    margin-bottom: 5px;
-    margin-top: 10px; }
-    #search-results .search-result a .title {
-      margin-bottom: 5px; }
-    #search-results .search-result a .url {
-      color: green;
-      font-size: 16px; }
-    #search-results .search-result a:hover .title {
-      text-decoration: underline; }
+  #search-results .search-result {
+    margin-top: 20px;
+    margin-bottom: 20px; }
+    #search-results .search-result a {
+      text-decoration: none;
+      margin-bottom: 5px;
+      margin-top: 10px; }
+      #search-results .search-result a .title {
+        margin-bottom: 5px;
+        font-size: 18px; }
+      #search-results .search-result a .url {
+        color: green;
+        font-size: 16px; }
+      #search-results .search-result a:hover .title {
+        text-decoration: underline; }
 
 body.contrast-high #search-results span.match {
   color: black !important; }
