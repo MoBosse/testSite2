@@ -884,25 +884,25 @@ var indicatorModel = function (options) {
   
   //#XX---start---  
   
-  this.oldDic = {labels:[],colors:[],dashed:[]};
-  console.log("befor for:", this.oldDic, this.newDic);
-  this.newDic = {labels:[],colors:[],dashed:[]};
+  //this.oldDic = {labels:[],colors:[],dashed:[]};
+  //console.log("befor for:", this.oldDic, this.newDic);
+  //this.newDic = {labels:[],colors:[],dashed:[]};
   
   
-  for (var i=0; i<colors.length*2; i++){
-    if (i < colors.length){
-      this.newDic.labels.push("empty");
-      this.newDic.colors.push(colors[i].replace("'",'"'));
-      this.newDic.dashed.push(false);
-    }
-    else{
-      this.newDic.labels.push("empty");
-      this.newDic.colors.push(colors[i - colors.length].replace("'",'"'));
-      this.newDic.dashed.push(true);
-    }
-  }
+  //for (var i=0; i<colors.length*2; i++){
+    //if (i < colors.length){
+      //this.newDic.labels.push("empty");
+      //this.newDic.colors.push(colors[i].replace("'",'"'));
+      //this.newDic.dashed.push(false);
+    //}
+    //else{
+      //this.newDic.labels.push("empty");
+      //this.newDic.colors.push(colors[i - colors.length].replace("'",'"'));
+      //this.newDic.dashed.push(true);
+    //}
+  //}
       
-  console.log("after for:", this.oldDic, this.newDic); 
+  //console.log("after for:", this.oldDic, this.newDic); 
   //#XX---stop---
   
   // allow headline + (2 x others)
@@ -1181,7 +1181,7 @@ var indicatorModel = function (options) {
           
         
       convertToDataset = function (data, combinationDescription, combination) {
-        updateDic(combinationDescription, datasetIndex);
+        //updateDic(combinationDescription, datasetIndex);
         
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
