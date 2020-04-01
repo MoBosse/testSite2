@@ -606,56 +606,47 @@ var accessibilitySwitcher = function() {
     }).html(getContrastToggleLabel(contrast).replace(" ", "<br/>")).click(function() {
       setActiveContrast($(this).data('contrast'));
       imageFix(contrast);
-      broadcastContrastChange(contrast, this);
     })));
   });
-
-  function broadcastContrastChange(contrast, elem) {
-    var event = new CustomEvent('contrastChange', {
-      bubbles: true,
-      detail: contrast
-    });
-    elem.dispatchEvent(event);
-  }
-
-  function getContrastToggleLabel(identifier){
-    var contrastType = ""
-    if(contrastType === "long") {
-      if(identifier === "default"){
-        return translations.header.default_contrast;
-      }
-      else if(identifier === "high"){
-        return translations.header.high_contrast;
-      }
-    }
-    else {
-      return 'A'
+  
+function getContrastToggleLabel(identifier){
+  var contrastType = ""
+  if(contrastType === "long") {
+    if(identifier === "default"){	
+      return translations.header.default_contrast; 	
+    }	
+    else if(identifier === "high"){	
+      return translations.header.high_contrast;	
     }
   }
-
-  function getContrastToggleTitle(identifier){
-    if(identifier === "default"){
-      return translations.header.disable_high_contrast;
-    }
-    else if(identifier === "high"){
-      return translations.header.enable_high_contrast;
-    }
+  else {
+    return 'A'
   }
+}
 
-
-  function imageFix(contrast) {
-    if (contrast == 'high')  {
-      _.each($('img:not([src*=high-contrast])'), function(goalImage){
-        if ($(goalImage).attr('src').slice(0, 35) != "https://platform-cdn.sharethis.com/") {
-        $(goalImage).attr('src', $(goalImage).attr('src').replace('img/', 'img/high-contrast/'));
-        }})
-    } else {
-      // Remove high-contrast
-      _.each($('img[src*=high-contrast]'), function(goalImage){
-        $(goalImage).attr('src', $(goalImage).attr('src').replace('high-contrast/', ''));
-      })
-    }
-  };
+function getContrastToggleTitle(identifier){	
+  if(identifier === "default"){	
+    return translations.header.disable_high_contrast; 	
+  }	
+  else if(identifier === "high"){	
+    return translations.header.enable_high_contrast;	
+  }	
+}
+  
+  
+function imageFix(contrast) {
+  if (contrast == 'high')  {
+    _.each($('img:not([src*=high-contrast])'), function(goalImage){
+      if ($(goalImage).attr('src').slice(0, 35) != "https://platform-cdn.sharethis.com/") {
+      $(goalImage).attr('src', $(goalImage).attr('src').replace('img/', 'img/high-contrast/'));
+      }})
+  } else {
+    // Remove high-contrast
+    _.each($('img[src*=high-contrast]'), function(goalImage){
+      $(goalImage).attr('src', $(goalImage).attr('src').replace('high-contrast/', ''));
+    })
+  }
+};
 
 };
 opensdg.chartColors = function(indicatorId) {
@@ -751,6 +742,7 @@ var indicatorModel = function (options) {
   this.showMap = options.showMap;
   this.graphLimits = options.graphLimits;
   this.stackedDisaggregation = options.stackedDisaggregation;
+  this.unitsWithoutHeadline = options.unitsWithoutHeadline;
 
   // initialise the field information, unique fields and unique values for each field:
   (function initialise() {
@@ -889,6 +881,29 @@ var indicatorModel = function (options) {
   
   // use custom colors
   var colors = opensdg.chartColors(this.indicatorId);
+  
+  //#XX---start---  
+  
+  this.oldDic = {labels:[],colors:[],dashed:[]};
+  console.log("befor for:", this.oldDic, this.newDic);
+  this.newDic = {labels:[],colors:[],dashed:[]};
+  
+  
+  for (var i=0; i<colors.length*2; i++){
+    if (i < colors.length){
+      this.newDic.labels.push("empty");
+      this.newDic.colors.push(colors[i].replace("'",'"'));
+      this.newDic.dashed.push(false);
+    }
+    else{
+      this.newDic.labels.push("empty");
+      this.newDic.colors.push(colors[i - colors.length].replace("'",'"'));
+      this.newDic.dashed.push(true);
+    }
+  }
+      
+  console.log("after for:", this.oldDic, this.newDic); 
+  //#XX---stop---
   
   // allow headline + (2 x others)
   var maxDatasetCount = 2 * colors.length;
@@ -1063,13 +1078,37 @@ var indicatorModel = function (options) {
           return translations.t(combination[key]);
         }).join(', ');
       },
+        
+        
+        
+        
+      
+      //getColor2 = function(label, index){
+        //set label for headline data
+        //if (label == undefined){
+          //label = 'x'}
+        //return this.newDic.colors[this.newDic.labels.indexOf(label)];
+      //},
+        
+      //getBorderDash2 = function(label, index){
+        //set label for headline data
+        //if (label == undefined){
+          //label = 'x'}     
+        
+        //return this.newDic.dashed[this.newDic.labels.indexOf(label)] ? [5, 5] : undefined;
+      //},
+        
+        
+        
+        
+        
       getColor = function(datasetIndex) {
-
+        
         // offset if there is no headline data:
         if(!that.hasHeadline) {
           datasetIndex += 1;
         }
-
+        
         if(datasetIndex === 0) {
           return headlineColor;
         } else {
@@ -1115,7 +1154,35 @@ var indicatorModel = function (options) {
         // the first dataset is the headline:
         return datasetIndex > colors.length ? [5, 5] : undefined;
       },
+       
+      //updateDic = function(label, index){
+        
+        //if (label==undefined){
+          //label = 'x'
+        //}
+        //if (index==0){
+          
+          //const oldDic = JSON.parse(JSON.stringify(this.newDic));
+          //console.log("the oldDic is overwritten","old",this.oldDic,"new",this.newDic);
+          //for (var i=0;i<oldDic.labels.length; i++){
+            //this.newDic.labels[i]="empty";
+          //}
+          //console.log("the newDic is overwritten","old",this.oldDic,"new",this.newDic);
+          //this.oldDic = this.oldDic;
+        //}
+        //if (this.oldDic.labels.indexOf(label)==-1){
+          //console.log("the dataset ",label," is new start","old",this.oldDic,"new",this.newDic);
+          //var position = this.oldDic.labels.indexOf("empty");
+          //this.newDic.labels[position] = label;
+          //console.log("the dataset ",label," is new stop","old",this.oldDic,"new",this.newDic);
+        //}
+      //},
+        
+          
+        
       convertToDataset = function (data, combinationDescription, combination) {
+        updateDic(combinationDescription, datasetIndex);
+        
         var ds = _.extend({
             label: combinationDescription ? combinationDescription : that.country,
             disaggregation: combination,
@@ -1260,6 +1327,7 @@ var indicatorModel = function (options) {
       footerFields: this.footerFields,
       graphLimits: this.graphLimits,
       stackedDisaggregation: this.stackedDisaggregation,
+      unitsWithoutHeadline: this.unitsWithoutHeadline,
       chartTitle: this.chartTitle
     });
 
@@ -1745,8 +1813,6 @@ var indicatorView = function (model, options) {
   this.createPlot = function (chartInfo) {
 
     var that = this;
-    var gridColor = that.getGridColor();
-    var tickColor = that.getTickColor();
 
     var chartConfig = {
       type: this._model.graphType,
@@ -1762,19 +1828,12 @@ var indicatorView = function (model, options) {
           xAxes: [{
             maxBarThickness: 150,
             gridLines: {
-              color: gridColor,
-            },
-            ticks: {
-              fontColor: tickColor,
-            },
+              color: '#ddd',
+            }
           }],
           yAxes: [{
-            gridLines: {
-              color: gridColor,
-            },
             ticks: {
-              suggestedMin: 0,
-              fontColor: tickColor,
+              suggestedMin: 0
             },
             scaleLabel: {
               display: this._model.selectedUnit ? translations.t(this._model.selectedUnit) : this._model.measurementUnit,
@@ -1783,7 +1842,8 @@ var indicatorView = function (model, options) {
           }]
         },
         legendCallback: function(chart) {
-            var text = ['<ul id="legend">'];
+            
+            var text = ['<ul id="legend" style="text-align: left;">'];
 
             _.each(chart.data.datasets, function(dataset, datasetIndex) {
               text.push('<li data-datasetindex="' + datasetIndex + '">');
@@ -1810,16 +1870,6 @@ var indicatorView = function (model, options) {
     this.alterChartConfig(chartConfig, chartInfo);
 
     this._chartInstance = new Chart($(this._rootElement).find('canvas'), chartConfig);
-
-    window.addEventListener('contrastChange', function(e) {
-      var gridColor = that.getGridColor(e.detail);
-      var tickColor = that.getTickColor(e.detail);
-      view_obj._chartInstance.options.scales.yAxes[0].gridLines.color = gridColor;
-      view_obj._chartInstance.options.scales.yAxes[0].ticks.fontColor = tickColor;
-      view_obj._chartInstance.options.scales.xAxes[0].gridLines.color = gridColor;
-      view_obj._chartInstance.options.scales.xAxes[0].ticks.fontColor = tickColor;
-      view_obj._chartInstance.update();
-    });
 
     Chart.pluginService.register({
       afterDraw: function(chart) {
@@ -1886,23 +1936,6 @@ var indicatorView = function (model, options) {
     });
 
     $(this._legendElement).html(view_obj._chartInstance.generateLegend());
-  };
-
-  this.getGridColor = function(contrast=null) {
-    return this.isHighContrast(contrast) ? '#222' : '#ddd';
-  };
-
-  this.getTickColor = function(contrast=null) {
-    return this.isHighContrast(contrast) ? '#fff' : '#000';
-  }
-
-  this.isHighContrast = function(contrast=null) {
-    if (contrast) {
-      return contrast === 'high';
-    }
-    else {
-      return $('body').hasClass('contrast-high');
-    }
   };
 
   this.toCsv = function (tableData) {
