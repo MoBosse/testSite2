@@ -1557,13 +1557,13 @@ body.contrast-high #main-content.goal-indicators.goal-by-target .indicator-cards
     margin: 0; }
 
 .notapplicable {
-  background: repeating-linear-gradient(135deg, #ccc, white 10px, #ccc 10px, white 20px); }
+  background: #B7B7B7; }
 
 .inprogress {
-  background-color: #757575; }
+  background-color: #E27874; }
 
 .complete {
-  background-color: #2B2B2B; }
+  background-color: #5cb85c; }
 
 #main-content .statuses strong {
   font-weight: normal; }
