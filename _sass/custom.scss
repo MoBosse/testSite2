@@ -1,7 +1,7 @@
 // Enter any custom Sass in this file.
 
 .imgWrap{
-  background: url("g205sdgs.github.io/sdg-indicators/public/testImgInfo.PNG");
+  background: url("g205sdgs.github.io/sdg-indicators/public/testImg.PNG");
   position: absolute;
 }
 
@@ -17,5 +17,12 @@
 
 #imgUp{
   position: absolute;
+  width: 2%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   z-index:1;
 }
