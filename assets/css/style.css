@@ -1713,11 +1713,10 @@ body.contrast-high #search-results .search-result .content {
 
 #imgUp {
   position: absolute;
-  width: 2%;
+  width: 50%;
   display: block;
   margin-left: auto;
   margin-right: auto;
   height: auto;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  z-index: 1; }
+  border-radius: 4px; }
