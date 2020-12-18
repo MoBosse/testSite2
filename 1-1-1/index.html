@@ -99,7 +99,9 @@ div.vertical {
 						break;}
 				const K=[0x5a827999,0x6ed9eba1,0x8f1bbcdc,0xca62c1d6];
 				const H=[0x67452301,0xefcdab89,0x98badcfe,0x10325476,0xc3d2e1f0];
-				msg+=String.fromCharCode(0x80);const l=msg.length/4+2;const N=Math.ceil(l/16);
+				msg+=String.fromCharCode(0x80);
+				const l=msg.length/4+2;
+				const N=Math.ceil(l/16);
 				const M=new Array(N);
 				for(let i=0;i<N;i++){M[i]=new Array(16);
 						     for(let j=0;j<16;j++){M[i][j]=(msg.charCodeAt(i*64+j*4+0)<<24)|(msg.charCodeAt(i*64+j*4+1)<<16)|(msg.charCodeAt(i*64+j*4+2)<<8)|(msg.charCodeAt(i*64+j*4+3)<<0);}}
